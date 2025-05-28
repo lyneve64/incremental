@@ -1,3 +1,3 @@
 # TODO LIST
-- [] finish the auto incrementor
-- [] add gambling
+- [ ] finish the auto incrementor
+- [ ] add gambling
