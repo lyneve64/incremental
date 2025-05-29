@@ -10,6 +10,9 @@ var buyAutoIncrementorButton;
 var autoIncrementorDisplay;
 var buyAutoIncrementsButton;
 var autoIncrementsDisplay;
+var coinflipAmount;
+var coinflipResult;
+var coinflipButton;
 
 document.addEventListener("DOMContentLoaded", () => {
     incrementButton = document.getElementById("increment");
@@ -20,11 +23,15 @@ document.addEventListener("DOMContentLoaded", () => {
     autoIncrementorDisplay = document.getElementById("auto-incrementors");
     buyAutoIncrementsButton = document.getElementById("buy-auto-increments");
     autoIncrementsDisplay = document.getElementById("auto-increments");
+    coinflipAmount = document.getElementById("coinflip-amount");
+    coinflipResult = document.getElementById("coinflip-result");
+    coinflipButton = document.getElementById("coinflip");
 
     incrementButton.addEventListener("click", () => { increment(increments); });
     buyIncrementsButton.addEventListener("click", () => { buyIncrements(); });
     buyAutoIncrementorButton.addEventListener("click", () => { buyAutoIncrementor() });
     buyAutoIncrementsButton.addEventListener("click", () => { buyAutoIncrements(); });
+    coinflipButton.addEventListener("click", () => { runCoinflip(); });
 
     setInterval(() => { timeStep(); }, 1000);
 });
@@ -32,6 +39,22 @@ document.addEventListener("DOMContentLoaded", () => {
 function timeStep() {
     for (var i = 0; i < autoIncrementors; i++) {
         increment(autoIncrements);
+    }
+}
+
+function runCoinflip() {
+    if (coinflipAmount.value > incrementations) {
+        alert("NOT ENOUGH INCREMENTATIONS!");
+    } else {
+        incrementations -= coinflipAmount.value;
+        if (Math.random() <= 0.5) {
+            incrementations += coinflipAmount.value * 2;
+            coinflipResult.textContent = "WIN";
+            updateDisplays();
+        } else {
+            coinflipResult.textContent = "LOSS";
+            updateDisplays();
+        }
     }
 }
 
