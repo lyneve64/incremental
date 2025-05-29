@@ -1,3 +1,8 @@
 # TODO LIST
-- [ ] finish the auto incrementor
+- [x] finish the auto incrementor
 - [ ] add gambling
+    - [x] add coinflip
+    - [ ] add higher/lower
+    - [ ] add slots (maybe)
+- [ ] dynamic prices 
+- [ ] cross-session saving

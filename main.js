@@ -13,6 +13,8 @@ var autoIncrementsDisplay;
 var coinflipAmount;
 var coinflipResult;
 var coinflipButton;
+var saveButton;
+var loadButton
 
 document.addEventListener("DOMContentLoaded", () => {
     incrementButton = document.getElementById("increment");
@@ -26,12 +28,17 @@ document.addEventListener("DOMContentLoaded", () => {
     coinflipAmount = document.getElementById("coinflip-amount");
     coinflipResult = document.getElementById("coinflip-result");
     coinflipButton = document.getElementById("coinflip");
+    saveButton = document.getElementById("save");
+    loadButton = document.getElementById("load");
 
     incrementButton.addEventListener("click", () => { increment(increments); });
     buyIncrementsButton.addEventListener("click", () => { buyIncrements(); });
     buyAutoIncrementorButton.addEventListener("click", () => { buyAutoIncrementor() });
     buyAutoIncrementsButton.addEventListener("click", () => { buyAutoIncrements(); });
     coinflipButton.addEventListener("click", () => { runCoinflip(); });
+    saveButton.addEventListener("click", () => { save(); });
+    loadButton.addEventListener("click", () => { load(); });
+    document.getElementById("clear").addEventListener("click", () => { localStorage.clear(); alert("CLEARED!"); });
 
     setInterval(() => { timeStep(); }, 1000);
 });
@@ -98,4 +105,21 @@ function updateDisplays() {
     incrementsDisplay.textContent = increments;
     autoIncrementorDisplay.textContent = autoIncrementors;
     autoIncrementsDisplay.textContent = autoIncrements;
+}
+
+function save() {
+    localStorage.setItem("incrementations", incrementations.toString());
+    localStorage.setItem("increments", increments.toString());
+    localStorage.setItem("autoIncrementors", autoIncrementors.toString());
+    localStorage.setItem("autoIncrements", autoIncrements.toString());
+    alert("SAVED!");
+}
+
+function load() {
+    incrementations = Number(localStorage.getItem("incrementations"))
+    increments = Number(localStorage.getItem("increments"));
+    autoIncrementors = Number(localStorage.getItem("autoIncrementors"));
+    autoIncrements = Number(localStorage.getItem("autoIncrements"));
+    updateDisplays();
+    alert("LOADED!");
 }
