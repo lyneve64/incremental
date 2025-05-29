@@ -1,6 +1,7 @@
 var incrementations = 0;
 var increments = 1;
 var autoIncrementors = 0;
+var autoIncrements = 1;
 var incrementButton;
 var buyIncrementsButton;
 var incrementationsDisplay;
@@ -19,7 +20,15 @@ document.addEventListener("DOMContentLoaded", () => {
     incrementButton.addEventListener("click", () => { increment(increments); });
     buyIncrementsButton.addEventListener("click", () => { buyIncrements(); });
     buyAutoIncrementorButton.addEventListener("click", () => { buyAutoIncrementor() });
+
+    setInterval(() => { timeStep(); }, 1000);
 });
+
+function timeStep() {
+    for (var i = 0; i < autoIncrementors; i++) {
+        increment(autoIncrements);
+    }
+}
 
 function increment(num) {
     incrementations += num;
