@@ -8,6 +8,8 @@ var incrementationsDisplay;
 var incrementsDisplay;
 var buyAutoIncrementorButton;
 var autoIncrementorDisplay;
+var buyAutoIncrementsButton;
+var autoIncrementsDisplay;
 
 document.addEventListener("DOMContentLoaded", () => {
     incrementButton = document.getElementById("increment");
@@ -16,10 +18,13 @@ document.addEventListener("DOMContentLoaded", () => {
     incrementsDisplay = document.getElementById("increments");
     buyAutoIncrementorButton = document.getElementById("buy-auto-incrementor");
     autoIncrementorDisplay = document.getElementById("auto-incrementors");
+    buyAutoIncrementsButton = document.getElementById("buy-auto-increments");
+    autoIncrementsDisplay = document.getElementById("auto-increments");
 
     incrementButton.addEventListener("click", () => { increment(increments); });
     buyIncrementsButton.addEventListener("click", () => { buyIncrements(); });
     buyAutoIncrementorButton.addEventListener("click", () => { buyAutoIncrementor() });
+    buyAutoIncrementsButton.addEventListener("click", () => { buyAutoIncrements(); });
 
     setInterval(() => { timeStep(); }, 1000);
 });
@@ -55,8 +60,19 @@ function buyAutoIncrementor() {
     }
 }
 
+function buyAutoIncrements() {
+    if (incrementations < 20) {
+        alert("NOT ENOUGH INCREMENTATIONS!");
+    } else {
+        incrementations -= 20;
+        autoIncrements += 1;
+        updateDisplays();
+    }
+}
+
 function updateDisplays() {
     incrementationsDisplay.textContent = incrementations;
     incrementsDisplay.textContent = increments;
     autoIncrementorDisplay.textContent = autoIncrementors;
+    autoIncrementsDisplay.textContent = autoIncrements;
 }
